@@ -60,7 +60,7 @@ let appData= {
             appData.optionalExpenses[i]=opt;
         }
     },
-    chooseIncome: function() {
+    /*chooseIncome: function() {
         let items = prompt('Что принесет дополнительный доход? (Перечислите через запятую)', '');
         console.log(items);
        
@@ -75,10 +75,28 @@ let appData= {
         alert( "Способы доп. заработка: " + ( i + 1) + ' - ' + item );
         });
 
+    }*/
+    chooseIncome: function () {
+
+        let items = prompt("Что принесет дополнительный доход? (Перечислите через запятую)", "");
+
+        if (typeof(items) != "string" || items == "" || typeof(items) == null) {
+            console.log("Вы ввели некорректные данные или не ввели их вовсе");
+        } else {
+            appData.income = items.split(", ");
+            appData.income.push(prompt("Может что-то еще?"));
+            appData.income.sort();
+        }
+
+        appData.income.forEach (function (itemmassive, i) {
+            alert("Способы доп. заработка: " + (i+1) + " - " + itemmassive);
+        });
+
     }
+
 }
 
 for (let key in appData) {
-   alert( "Наша программа включает в себя данные: " + key + "= " + appData[key]);
+    console.log( "Наша программа включает в себя данные: " + key + "= " + appData[key]);
   }
 //console.log(appData)   appData.chooseIncome()
